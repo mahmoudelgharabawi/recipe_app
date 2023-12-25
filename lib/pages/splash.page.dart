@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/pages/home.pgae.dart';
 import 'package:recipe_app/pages/login.page.dart';
 import 'package:recipe_app/services/prefrences.service.dart';
+import 'package:recipe_app/utils/images.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -13,7 +14,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    initSplash();
+    // initSplash();
     super.initState();
   }
 
@@ -33,8 +34,22 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(ImagesPath.background), fit: BoxFit.cover)),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(ImagesPath.baseHeader),
+              ),
+              CircularProgressIndicator(),
+            ],
+          ),
+        ),
       ),
     );
   }
