@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/pages/splash.page.dart';
 import 'package:recipe_app/services/prefrences.service.dart';
+import 'package:recipe_app/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -32,7 +33,10 @@ class MyApp extends StatelessWidget {
           fillColor: Colors.grey.shade200,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Color(0xfff45b00),
+            primary: Color(0xfff45b00),
+            secondary: Color(0xfff45b00)),
         useMaterial3: true,
       ),
       home: SplashPage(),
