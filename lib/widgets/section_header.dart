@@ -16,11 +16,14 @@ class SectionHeader extends StatelessWidget {
         children: [
           Text(
             sectionName,
-            style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900),
+            style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
           ),
           Text(
             'See All',
-            style: TextStyle(fontSize: 14, color: Color(ColorsConst.mainColor)),
+            style: TextStyle(
+                fontSize: 15,
+                color: Color(ColorsConst.mainColor),
+                fontWeight: FontWeight.w400),
           )
         ],
       ),
