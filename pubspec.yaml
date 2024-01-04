@@ -35,6 +35,8 @@ dependencies:
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
   get_it: ^7.6.4
+  flut_grouped_buttons: ^0.0.9
+  flutter_bloc: ^8.1.3
 
 
 

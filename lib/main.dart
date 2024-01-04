@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:recipe_app/cubit/counter_cubit.dart';
 import 'package:recipe_app/pages/splash.page.dart';
 import 'package:recipe_app/services/prefrences.service.dart';
 import 'package:recipe_app/utils/colors.dart';
@@ -20,7 +22,8 @@ void main() async {
     print(
         '=========================Error In init Prefrences ${e}========================');
   }
-  runApp(const MyApp());
+  runApp(BlocProvider<CounterCubit>(
+      create: (context) => CounterCubit(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
