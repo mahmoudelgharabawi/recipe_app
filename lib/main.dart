@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:recipe_app/cubit/counter_cubit.dart';
+import 'package:recipe_app/cubit/ads_cubit.dart';
+import 'package:recipe_app/firebase_options.dart';
 import 'package:recipe_app/pages/splash.page.dart';
 import 'package:recipe_app/services/prefrences.service.dart';
 import 'package:recipe_app/utils/colors.dart';
@@ -9,10 +11,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   try {
     var preference = await SharedPreferences.getInstance();
 
     GetIt.I.registerSingleton<SharedPreferences>(preference);
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
     // if (preference != null) {
     //   print(
@@ -22,8 +29,8 @@ void main() async {
     print(
         '=========================Error In init Prefrences ${e}========================');
   }
-  runApp(BlocProvider<CounterCubit>(
-      create: (context) => CounterCubit(), child: const MyApp()));
+  runApp(BlocProvider<AdsCubit>(
+      create: (context) => AdsCubit(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
