@@ -1,13 +1,7 @@
-import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flut_grouped_buttons/flut_grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe_app/cubit/ads_cubit.dart';
-import 'package:recipe_app/models/ad.model.dart';
 import 'package:recipe_app/pages/page_view.page.dart';
 import 'package:recipe_app/services/meal.service.dart';
 import 'package:recipe_app/utils/colors.dart';
@@ -28,12 +22,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    init();
     super.initState();
-  }
-
-  void init() async {
-    await BlocProvider.of<AdsCubit>(context).getAds();
   }
 
   @override
@@ -57,78 +46,71 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              BlocBuilder<AdsCubit, AdsState>(builder: (context, state) {
-                if (state is AdsLoading) {
-                  return const CircularProgressIndicator();
-                } else if (state is AdsInitial) {
-                  return Column(
-                    children: [
-                      CarouselSlider(
-                        carouselController: carouselControllerEx,
-                        options: CarouselOptions(
-                            autoPlay: true,
-                            height: 200,
-                            viewportFraction: .75,
-                            enlargeStrategy: CenterPageEnlargeStrategy.height,
-                            enlargeCenterPage: true,
-                            onPageChanged: (index, _) {
-                              sliderIndex = index;
-                              setState(() {});
-                            },
-                            enlargeFactor: .3),
-                        items: state.ads.map((ad) {
-                          return Stack(
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 5.0),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        fit: BoxFit.fitWidth,
-                                        image: NetworkImage(ad.image!))),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.black38,
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text(
-                                      ad.title.toString(),
-                                      style: const TextStyle(
-                                          fontSize: 16.0, color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        }).toList(),
-                      ),
-                      DotsIndicator(
-                        dotsCount: state.ads.length,
-                        position: sliderIndex,
-                        onTap: (position) async {
-                          await carouselControllerEx.animateToPage(position);
-                          sliderIndex = position;
-                          setState(() {});
-                        },
-                        decorator: DotsDecorator(
-                          size: const Size.square(9.0),
-                          activeSize: const Size(18.0, 9.0),
-                          activeShape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                        ),
-                      ),
-                    ],
-                  );
-                } else {
-                  return const SizedBox.shrink();
-                }
-              }),
+              // Column(
+              //       children: [
+              //         CarouselSlider(
+              //           carouselController: carouselControllerEx,
+              //           options: CarouselOptions(
+              //               autoPlay: true,
+              //               height: 200,
+              //               viewportFraction: .75,
+              //               enlargeStrategy: CenterPageEnlargeStrategy.height,
+              //               enlargeCenterPage: true,
+              //               onPageChanged: (index, _) {
+              //                 sliderIndex = index;
+              //                 setState(() {});
+              //               },
+              //               enlargeFactor: .3),
+              //           items: state.ads.map((ad) {
+              //             return Stack(
+              //               children: [
+              //                 Container(
+              //                   width: MediaQuery.of(context).size.width,
+              //                   margin:
+              //                       const EdgeInsets.symmetric(horizontal: 5.0),
+              //                   decoration: BoxDecoration(
+              //                       image: DecorationImage(
+              //                           fit: BoxFit.fitWidth,
+              //                           image: NetworkImage(ad.image!))),
+              //                 ),
+              //                 Padding(
+              //                   padding: const EdgeInsets.all(8.0),
+              //                   child: Container(
+              //                     decoration: BoxDecoration(
+              //                         color: Colors.black38,
+              //                         borderRadius: BorderRadius.circular(25)),
+              //                     child: Padding(
+              //                       padding: const EdgeInsets.all(4.0),
+              //                       child: Text(
+              //                         ad.title.toString(),
+              //                         style: const TextStyle(
+              //                             fontSize: 16.0, color: Colors.white),
+              //                       ),
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ],
+              //             );
+              //           }).toList(),
+              //         ),
+              //         DotsIndicator(
+              //           dotsCount: state.ads.length,
+              //           position: sliderIndex,
+              //           onTap: (position) async {
+              //             await carouselControllerEx.animateToPage(position);
+              //             sliderIndex = position;
+              //             setState(() {});
+              //           },
+              //           decorator: DotsDecorator(
+              //             size: const Size.square(9.0),
+              //             activeSize: const Size(18.0, 9.0),
+              //             activeShape: RoundedRectangleBorder(
+              //                 borderRadius: BorderRadius.circular(5.0)),
+              //           ),
+              //         ),
+              //       ],
+              //     );
+
               SectionHeader(sectionName: 'Today\'s Fresh Recipes'),
               Card(
                 elevation: 2,

@@ -1,12 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:recipe_app/cubit/ads_cubit.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_app/firebase_options.dart';
 import 'package:recipe_app/pages/splash.page.dart';
-import 'package:recipe_app/services/prefrences.service.dart';
-import 'package:recipe_app/utils/colors.dart';
+import 'package:recipe_app/provider/app_auth.provider.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -29,8 +28,9 @@ void main() async {
     print(
         '=========================Error In init Prefrences ${e}========================');
   }
-  runApp(BlocProvider<AdsCubit>(
-      create: (context) => AdsCubit(), child: const MyApp()));
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => AppAuthProvider())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

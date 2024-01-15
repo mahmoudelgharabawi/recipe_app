@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:recipe_app/pages/home.pgae.dart';
@@ -21,16 +23,16 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void initSplash() async {
-    await Future.delayed(const Duration(seconds: 3));
-    if (GetIt.I.get<SharedPreferences>().getBool('isLogin') ?? false) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => HomePage()));
-      // go to home page
-    } else {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => LoginPage()));
-      // go to login page
-    }
+    await Future.delayed(const Duration(seconds: 1));
+    FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user == null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => LoginPage()));
+      } else {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => HomePage()));
+      }
+    });
   }
 
   @override
