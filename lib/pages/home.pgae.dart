@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flut_grouped_buttons/flut_grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_app/pages/page_view.page.dart';
+import 'package:recipe_app/provider/app_auth.provider.dart';
 import 'package:recipe_app/services/meal.service.dart';
 import 'package:recipe_app/utils/colors.dart';
 import 'package:recipe_app/utils/navigation.utils.dart';
@@ -263,10 +266,10 @@ class _HomePageState extends State<HomePage> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    NavigationUtils.push(
-                        context: context, page: PageViewPage());
+                    Provider.of<AppAuthProvider>(context, listen: false)
+                        .signOut(context);
                   },
-                  child: Text('open'))
+                  child: Text('signOut'))
             ],
           ),
         ),
