@@ -4,7 +4,6 @@ import 'package:overlay_kit/overlay_kit.dart';
 import 'package:recipe_app/pages/home.pgae.dart';
 import 'package:recipe_app/pages/login.page.dart';
 import 'package:recipe_app/pages/register.page.dart';
-import 'package:recipe_app/pages/splash.page.dart';
 import 'package:recipe_app/utils/toast_message_status.dart';
 import 'package:recipe_app/widgets/toast_message.widget.dart';
 

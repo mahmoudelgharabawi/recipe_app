@@ -5,6 +5,7 @@ import 'package:overlay_kit/overlay_kit.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app/firebase_options.dart';
 import 'package:recipe_app/pages/splash.page.dart';
+import 'package:recipe_app/provider/ads.provider.dart';
 import 'package:recipe_app/provider/app_auth.provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,9 +30,10 @@ void main() async {
     print(
         '=========================Error In init Prefrences ${e}========================');
   }
-  runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => AppAuthProvider())],
-      child: const MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AppAuthProvider()),
+    ChangeNotifierProvider(create: (_) => AdsProvider()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
