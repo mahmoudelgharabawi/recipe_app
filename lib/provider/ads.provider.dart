@@ -7,6 +7,11 @@ class AdsProvider extends ChangeNotifier {
   List<Ad>? _adsList;
 
   List<Ad>? get adsList => _adsList;
+
+  Ad? _ad;
+
+  Ad? get ad => _ad;
+
   int sliderIndex = 0;
   CarouselController? carouselController;
 
@@ -45,6 +50,22 @@ class AdsProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       _adsList = [];
+      notifyListeners();
+    }
+  }
+
+  Future<void> getCertinAd(String id) async {
+    try {
+      var result =
+          await FirebaseFirestore.instance.collection('ads').doc(id).get();
+      if (result.exists) {
+        _ad = Ad.fromJson(result.data() ?? {}, result.id);
+      } else {
+        _ad = null;
+      }
+      notifyListeners();
+    } catch (e) {
+      _ad = null;
       notifyListeners();
     }
   }

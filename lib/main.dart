@@ -7,6 +7,7 @@ import 'package:recipe_app/firebase_options.dart';
 import 'package:recipe_app/pages/splash.page.dart';
 import 'package:recipe_app/provider/ads.provider.dart';
 import 'package:recipe_app/provider/app_auth.provider.dart';
+import 'package:recipe_app/provider/ingredient.provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,6 +34,7 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AppAuthProvider()),
     ChangeNotifierProvider(create: (_) => AdsProvider()),
+    ChangeNotifierProvider(create: (_) => IngredientsProvider()),
   ], child: const MyApp()));
 }
 

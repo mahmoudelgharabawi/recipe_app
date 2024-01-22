@@ -41,6 +41,9 @@ dependencies:
   provider: ^6.1.1
   overlay_kit: ^1.0.8
   cloud_firestore: ^4.14.0
+  flutter_zoom_drawer: ^3.1.1
+  firebase_storage: ^11.6.0
+  file_picker: ^6.1.1
 
 
 
