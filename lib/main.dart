@@ -8,6 +8,7 @@ import 'package:recipe_app/pages/splash.page.dart';
 import 'package:recipe_app/provider/ads.provider.dart';
 import 'package:recipe_app/provider/app_auth.provider.dart';
 import 'package:recipe_app/provider/ingredient.provider.dart';
+import 'package:recipe_app/provider/recipes.provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,6 +36,7 @@ void main() async {
     ChangeNotifierProvider(create: (_) => AppAuthProvider()),
     ChangeNotifierProvider(create: (_) => AdsProvider()),
     ChangeNotifierProvider(create: (_) => IngredientsProvider()),
+    ChangeNotifierProvider(create: (_) => RecipesProvider()),
   ], child: const MyApp()));
 }
 

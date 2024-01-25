@@ -5,6 +5,7 @@ class Recipe {
   Map<String, String>? directions;
   String? imageUrl;
   List<String>? ingredients;
+  List<String>? favourite_users_ids;
   num? rate;
   num? servings;
   String? title;
@@ -24,6 +25,10 @@ class Recipe {
     ingredients = data['ingredients'] != null
         ? List<String>.from(data['ingredients'].map((e) => e.toString()))
         : null;
+    favourite_users_ids = data['favourite_users_ids'] != null
+        ? List<String>.from(
+            data['favourite_users_ids'].map((e) => e.toString()))
+        : null;
     rate = data['rate'];
     servings = data['servings'];
     title = data['title'];
@@ -38,6 +43,7 @@ class Recipe {
       "directions": directions,
       "imageUrl": imageUrl,
       "ingredients": ingredients,
+      "favourite_users_ids": favourite_users_ids,
       "rate": rate,
       "servings": servings,
       "title": title,
